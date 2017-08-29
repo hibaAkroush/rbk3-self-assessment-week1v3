@@ -1,16 +1,8 @@
-// your code here
-var Arrayy = function (arr) {
-	instance = {}
-	instance.first = first
-	instance.last = last
-	instance.arr = arr 
-return instance
+
+Array.prototype.first = function(){
+	return this[0]
 }
 
-this.first = function(){
-	return this.arr[0]
+Array.prototype.last = function(){
+	return this[this.length-1]
 }
-
-this.last = function(){
-	return this.arr[this.arr.length-1]
-}// your code here

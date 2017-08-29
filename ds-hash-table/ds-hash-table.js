@@ -7,44 +7,52 @@ var makeHashTable = function() {
 // it the hash table is almost full it will change size to 75%
     return {
       _storage: [],
+
       retrieve: function(key) {
-      var bucket = this._storage[hashFn(key, max)]
+        var index = hashFn(key, max)
+        var bucket = this._storage[index]
         // for retrieve if the key does not exist 
         // return null to user 
-        if(!bucket){
-          return null
-        }
-
+          if(!bucket){
+            return null
+          }
         //then  we loop inside the bucket if the key exists we return it  
         // creat tuple to check
-        for (var i = 0; i < this._storage[i].length; i++) {
-          var tuple = this._storage[i]
-          if (tuple[0]===key) {
-             return tuple [1]
+          for (var i = 0; i < this._storage[i].length; i++) {
+            var tuple = this._storage[i]
+            if (tuple[0]===key) {
+               return tuple [1]
+            }
           }
-        }
+// added line below /////////////////////////////////////LINE ADDED HERE //////////////////
+       return null
       },
 
       insert: function(key, value) {
         // first we should retrieve the bucket
-        var bucket = this._storage[hashFn(key, max)]
+        var index = hashFn(key, max)
+        var bucket = this._storage[index]
         // then we should check if the bucket does not exist we should creat it
         if(!bucket){
-          this._storage[hashFn(key, max)] = []
+          bucket = []
+          this._storage[index] = bucket
         }
 
         //then  we loop inside the bucket if the key exists we update it  
         // creat tuple to check
         // if tuple doesnt exist ceat it and push it in bucket 
-        for (var i = 0; i < this._storage[i].length; i++) {
-          var tuple = this._storage[i]
-          if (tuple[0]===key) {
-             tuple [1] =  value
+        var boolian = false
+          for (var i = 0; i < this._storage[i].length; i++) {
+              var tuple = this._storage[i]
+                if (tuple[0]===key) {
+                  boolian=true
+                   tuple [1] =  value
+                }
           }
-          tuple = [this._storage[hashFn(key, max)],value]
-          this._storage.push(tuple)
+//to push if the value doest already exist //////////////////////LINEs ADDED HERE //////////////////
+        if(!boolian){
+          bucket.push(index,value)
         }
-
         // if the key does not exist we creat the tuple and push it in the bucket 
 
 
