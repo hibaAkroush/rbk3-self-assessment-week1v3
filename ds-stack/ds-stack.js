@@ -1,20 +1,20 @@
 var Stack = function() {
-  instance={}
-    instance._storage = {}
-    instance.counter = 0;
-    instance.add = function(value){
-      counter ++ 
-      this._storage[counter]=value
-      console.log(this._storage)
-    };
-    instance.remove = function() {
-      delete this._storage[counter]
-            counter --
-      console.log(this._storage)
-    };
-    return instance
-  };
+  this._storage = []
+  this.counter = 0;
+};
+    
+Stack.prototype.add = function(value){
+  this._storage[this.counter]=value
+  this.counter ++ 
+  console.log(this._storage)
+};
+    
 
+Stack.prototype.remove = function() {
+  this._storage.pop()
+  this.counter --
+  console.log(this._storage)
+};
 //   ## Stack
 // * [ ] Implement a stack class.
 //   * You can use an array for storage, and delegate to its methods
